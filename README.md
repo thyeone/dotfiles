@@ -1,4 +1,4 @@
-# macOS Setup
+# dotfiles
 
 A personal collection of dotfiles and setup scripts for macOS development environment.
 
@@ -26,11 +26,13 @@ cd macos-setup
 ### Installation Modes
 
 **Interactive Mode (Default)**
+
 - The script will prompt you for each configuration step
 - Choose which components to install (y/n)
 - Allows selective installation of only the components you need
 
 **Automatic Mode**
+
 - Install all components without prompts
 - Use the `--all` flag:
 
