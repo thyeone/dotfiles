@@ -66,5 +66,10 @@ if prompt_install "Cursor Configuration" "$SCRIPT_DIR/cursor/setup.sh"; then
   run_setup "5. Cursor Configuration" "$SCRIPT_DIR/cursor/setup.sh"
 fi
 
+# VSCode Configuration
+if prompt_install "VSCode Configuration" "$SCRIPT_DIR/vscode/setup.sh"; then
+  run_setup "6. VSCode Configuration" "$SCRIPT_DIR/vscode/setup.sh"
+fi
+
 echo ""
 echo "✅ macOS setup completed!"
