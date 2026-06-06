@@ -10,16 +10,16 @@ ZSH_THEME="agnoster"
 
 plugins=(
   git
-  zsh-autosuggestions
-  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Android, iOS
-export ANDROID_HOME=/Users/macbook/Library/Android/sdk
+export ANDROID_HOME=/Users/$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tool
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # alias
 alias gl="git log --oneline --graph --all --decorate"          

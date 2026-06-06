@@ -51,24 +51,28 @@ if prompt_install "Node.js" "$SCRIPT_DIR/nvm/setup.sh"; then
   run_setup "2. Node.js" "$SCRIPT_DIR/nvm/setup.sh"
 fi
 
+if prompt_install "Ghostty Configuration" "$SCRIPT_DIR/ghostty/setup.sh"; then
+  run_setup "3. Ghostty Configuration" "$SCRIPT_DIR/ghostty/setup.sh"
+fi
+
 # Git Configuration
 if prompt_install "Git Configuration" "$SCRIPT_DIR/git/setup.sh"; then
-  run_setup "3. Git Configuration" "$SCRIPT_DIR/git/setup.sh"
+  run_setup "4. Git Configuration" "$SCRIPT_DIR/git/setup.sh"
 fi
 
 # Zsh Configuration
 if prompt_install "Zsh Configuration" "$SCRIPT_DIR/zsh/setup.sh"; then
-  run_setup "4. Zsh Configuration" "$SCRIPT_DIR/zsh/setup.sh"
+  run_setup "5. Zsh Configuration" "$SCRIPT_DIR/zsh/setup.sh"
 fi
 
 # Cursor Configuration
 if prompt_install "Cursor Configuration" "$SCRIPT_DIR/cursor/setup.sh"; then
-  run_setup "5. Cursor Configuration" "$SCRIPT_DIR/cursor/setup.sh"
+  run_setup "6. Cursor Configuration" "$SCRIPT_DIR/cursor/setup.sh"
 fi
 
 # VSCode Configuration
 if prompt_install "VSCode Configuration" "$SCRIPT_DIR/vscode/setup.sh"; then
-  run_setup "6. VSCode Configuration" "$SCRIPT_DIR/vscode/setup.sh"
+  run_setup "7. VSCode Configuration" "$SCRIPT_DIR/vscode/setup.sh"
 fi
 
 echo ""
