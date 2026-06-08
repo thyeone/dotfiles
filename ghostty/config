@@ -1,5 +1,5 @@
 theme = IR Black
 background-opacity = 0.9
-background-blur-radius = 20
+background-blur-radius = 10
 font-family = "Hack Nerd Font Mono"
 font-family = "Noto Sans CJK KR"

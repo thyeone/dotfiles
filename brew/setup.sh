@@ -25,7 +25,7 @@ fi
 
 # Install packages from Brewfile
 if [ -f "$DOTFILES_DIR/brew/Brewfile" ]; then
-  echo "📦 Installing packages from Brewfile..."
+  echo "📦 Syncing packages from Brewfile..."
   brew bundle --file="$DOTFILES_DIR/brew/Brewfile"
 else
   echo "⚠️ Brewfile not found at $DOTFILES_DIR/brew/Brewfile"
