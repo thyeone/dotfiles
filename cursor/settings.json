@@ -26,7 +26,6 @@
   "workbench.iconTheme": "material-icon-theme",
   "explorer.confirmDelete": false,
   "git.confirmSync": false,
-  "claudeCode.useTerminal": true,
   "explorer.confirmDragAndDrop": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "javascript.updateImportsOnFileMove.enabled": "always"

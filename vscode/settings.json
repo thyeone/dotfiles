@@ -22,7 +22,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
   },
-  "workbench.colorTheme": "Community Material Theme Darker High Contrast",
   "workbench.iconTheme": "material-icon-theme",
   "explorer.confirmDelete": false,
   "git.confirmSync": false,
