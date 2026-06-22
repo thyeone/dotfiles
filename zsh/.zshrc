@@ -24,4 +24,12 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # alias
 alias gl="git log --oneline --graph --all --decorate"          
 alias ccc="claude --dangerously-skip-permissions"   
-alias ll="ls -al"                                      
+alias ll="ls -al" 
+alias cpyolo="copilot --allow-all-tools"
+
+#openssl
+echo 'export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"' >> ~/.zshrc
+export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"                                     
+export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
