@@ -31,5 +31,4 @@ alias cpyolo="copilot --allow-all-tools"
 echo 'export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"' >> ~/.zshrc
 export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"                                     
-export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
 export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
