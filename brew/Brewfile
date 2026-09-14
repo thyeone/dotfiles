@@ -4,6 +4,7 @@ brew "tree"
 brew "nvm"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
+brew "herdr"
 
 # cask(GUI)
 cask "docker"
@@ -22,3 +23,5 @@ cask "claude"
 cask "chatgpt"
 cask "font-hack-nerd-font"
 cask "font-noto-sans-cjk-kr"
+cask "homebrew-app"
+cask "redis-insight"
