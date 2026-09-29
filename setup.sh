@@ -75,5 +75,10 @@ if prompt_install "VSCode Configuration" "$SCRIPT_DIR/vscode/setup.sh"; then
   run_setup "7. VSCode Configuration" "$SCRIPT_DIR/vscode/setup.sh"
 fi
 
+# Claude Code Configuration
+if prompt_install "Claude Code Configuration" "$SCRIPT_DIR/claude/setup.sh"; then
+  run_setup "8. Claude Code Configuration" "$SCRIPT_DIR/claude/setup.sh"
+fi
+
 echo ""
 echo "✅ macOS setup completed!"
