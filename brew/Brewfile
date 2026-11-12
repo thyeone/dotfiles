@@ -1,5 +1,6 @@
 # brew
 brew "git"
+brew "jq"
 brew "tree"
 brew "nvm"
 brew "zsh-autosuggestions"

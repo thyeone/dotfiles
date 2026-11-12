@@ -1,84 +1,50 @@
 #!/bin/zsh
 
-# Current script directory path
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-
-# Check for --all flag
+SCRIPT_DIR="${0:A:h}"
 INSTALL_ALL=false
-if [[ "$1" == "--all" ]]; then
-  INSTALL_ALL=true
-fi
+[[ "$1" == "--all" ]] && INSTALL_ALL=true
 
-# Function to prompt user for confirmation
-prompt_install() {
-  local name="$1"
-  local script="$2"
-  
-  if [ "$INSTALL_ALL" = true ]; then
-    return 0
-  fi
-  
-  echo ""
-  read "?Install $name? (y/n): " response
-  if [[ "$response" =~ ^[Yy]$ ]]; then
-    return 0
-  else
-    return 1
-  fi
-}
+# Order matters: brew first (later steps need it), nvm needs brew's nvm.
+steps=(
+  "Homebrew & Packages:brew"
+  "Node.js:nvm"
+  "Ghostty Configuration:ghostty"
+  "Git Configuration:git"
+  "Zsh Configuration:zsh"
+  "Cursor Configuration:cursor"
+  "VSCode Configuration:vscode"
+  "Claude Code Configuration:claude"
+)
 
-# Function to run setup script
-run_setup() {
-  local name="$1"
-  local script="$2"
-  
-  echo ""
-  echo "========================================="
-  echo "$name"
-  echo "========================================="
-  zsh "$script"
+load_brew() {
+  local b
+  for b in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+    [[ -x "$b" ]] && eval "$("$b" shellenv)" && return
+  done
 }
 
 echo "🚀 Starting setup..."
-
-# Homebrew installation
-if prompt_install "Homebrew & Packages" "$SCRIPT_DIR/brew/setup.sh"; then
-  run_setup "1. Homebrew & Packages" "$SCRIPT_DIR/brew/setup.sh"
-fi
-
-# Node.js installation
-if prompt_install "Node.js" "$SCRIPT_DIR/nvm/setup.sh"; then
-  run_setup "2. Node.js" "$SCRIPT_DIR/nvm/setup.sh"
-fi
-
-if prompt_install "Ghostty Configuration" "$SCRIPT_DIR/ghostty/setup.sh"; then
-  run_setup "3. Ghostty Configuration" "$SCRIPT_DIR/ghostty/setup.sh"
-fi
-
-# Git Configuration
-if prompt_install "Git Configuration" "$SCRIPT_DIR/git/setup.sh"; then
-  run_setup "4. Git Configuration" "$SCRIPT_DIR/git/setup.sh"
-fi
-
-# Zsh Configuration
-if prompt_install "Zsh Configuration" "$SCRIPT_DIR/zsh/setup.sh"; then
-  run_setup "5. Zsh Configuration" "$SCRIPT_DIR/zsh/setup.sh"
-fi
-
-# Cursor Configuration
-if prompt_install "Cursor Configuration" "$SCRIPT_DIR/cursor/setup.sh"; then
-  run_setup "6. Cursor Configuration" "$SCRIPT_DIR/cursor/setup.sh"
-fi
-
-# VSCode Configuration
-if prompt_install "VSCode Configuration" "$SCRIPT_DIR/vscode/setup.sh"; then
-  run_setup "7. VSCode Configuration" "$SCRIPT_DIR/vscode/setup.sh"
-fi
-
-# Claude Code Configuration
-if prompt_install "Claude Code Configuration" "$SCRIPT_DIR/claude/setup.sh"; then
-  run_setup "8. Claude Code Configuration" "$SCRIPT_DIR/claude/setup.sh"
-fi
+failed=()
+i=0
+for step in "${steps[@]}"; do
+  name="${step%%:*}" dir="${step##*:}"
+  (( i++ ))
+  if [[ "$INSTALL_ALL" != true ]]; then
+    echo ""
+    read -q "?Install $name? (y/n): " || { echo; continue; }
+    echo
+  fi
+  echo ""
+  echo "========================================="
+  echo "$i. $name"
+  echo "========================================="
+  load_brew  # brew may have just been installed by an earlier step
+  zsh "$SCRIPT_DIR/$dir/setup.sh" "$INSTALL_ALL" || failed+=("$name")
+done
 
 echo ""
+if (( ${#failed} )); then
+  echo "❌ Failed: ${(j:, :)failed}"
+  exit 1
+fi
 echo "✅ macOS setup completed!"

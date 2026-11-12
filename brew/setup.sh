@@ -1,34 +1,23 @@
 #!/bin/zsh
-
-DOTFILES_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+source "${0:A:h:h}/lib.sh"
 AUTO_MODE=${1:-false}
 
 echo "📦 Setting up Homebrew..."
 
-# Install Homebrew if not already installed
 if ! command -v brew >/dev/null 2>&1; then
   echo "📦 Installing Homebrew..."
-  if [ "$AUTO_MODE" = true ] || [ -n "$NONINTERACTIVE" ]; then
-    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  else
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  fi
+  [[ "$AUTO_MODE" == true ]] && export NONINTERACTIVE=1
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || exit 1
 
-  # Add Homebrew to PATH for Apple Silicon
-  if [[ $(uname -m) == "arm64" ]]; then
-    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+  if [[ $(uname -m) == arm64 ]]; then
+    grep -qs 'brew shellenv' ~/.zprofile || echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
 else
   echo "✅ Homebrew already installed"
 fi
 
-# Install packages from Brewfile
-if [ -f "$DOTFILES_DIR/brew/Brewfile" ]; then
-  echo "📦 Syncing packages from Brewfile..."
-  brew bundle --file="$DOTFILES_DIR/brew/Brewfile"
-else
-  echo "⚠️ Brewfile not found at $DOTFILES_DIR/brew/Brewfile"
-fi
+echo "📦 Syncing packages from Brewfile..."
+brew bundle --file="$DOTFILES_DIR/brew/Brewfile" || exit 1
 
 echo "✅ Homebrew setup completed!"

@@ -10,9 +10,11 @@ This repository contains configuration files and automated setup scripts to quic
 
 - 🍺 **Homebrew**: Package manager installation and package management
 - 📦 **Node.js**: Automatic LTS version installation via nvm
+- 👻 **Ghostty**: Terminal configuration
 - 🔧 **Git**: Global Git configuration and ignore patterns
-- 🐚 **Zsh**: Shell configuration and environment setup
-- ✏️ **Cursor**: Editor settings and extension management
+- 🐚 **Zsh**: Oh My Zsh install and shell configuration
+- ✏️ **Cursor / VSCode**: Editor settings and extension management
+- 🤖 **Claude Code**: Status line script
 
 ## Quick Start
 
@@ -42,10 +44,13 @@ cd macos-setup
 
 ### Available Components
 
-The setup script includes the following components:
-
 1. **Homebrew & Packages** - Installs Homebrew and packages from `brew/Brewfile`
-2. **Node.js** - Sets up nvm and installs Node.js LTS
-3. **Git Configuration** - Configures Git settings and global ignore patterns
-4. **Zsh Configuration** - Sets up zsh shell configuration
-5. **Cursor Configuration** - Configures Cursor editor settings and extensions
+2. **Node.js** - Installs Node.js LTS via nvm
+3. **Ghostty Configuration** - Links `~/.config/ghostty/config`
+4. **Git Configuration** - Links `~/.gitconfig` and `~/.gitignore`
+5. **Zsh Configuration** - Installs Oh My Zsh and links `~/.zshrc`
+6. **Cursor Configuration** - Links settings and installs extensions
+7. **VSCode Configuration** - Links settings and installs extensions
+8. **Claude Code Configuration** - Links `~/.claude/statusline-command.sh`
+
+Existing files are backed up as `<file>.backup.<timestamp>` before linking. Re-running is safe.
