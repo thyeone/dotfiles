@@ -30,7 +30,6 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 alias gl="git log --oneline --graph --all --decorate"
 alias ccc="claude --dangerously-skip-permissions"
 alias ll="ls -al"
-alias cpyolo="copilot --allow-all-tools"
 alias myip="ipconfig getifaddr en0"
 
 #openssl
